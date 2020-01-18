@@ -23,17 +23,6 @@
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
         <!-- Left navbar links -->
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
-            </li>
-            <li class="nav-item d-none d-sm-inline-block">
-                <a href="../../index3.html" class="nav-link">Home</a>
-            </li>
-            <li class="nav-item d-none d-sm-inline-block">
-                <a href="#" class="nav-link">Contact</a>
-            </li>
-        </ul>
 
         <!-- SEARCH FORM -->
         <form class="form-inline ml-3">
@@ -115,13 +104,14 @@
                     <!-- Add icons to the links using the .nav-icon class
                              with font-awesome or any other icon font library -->
                     <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link">
+                        <router-link to="/categories">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 Category
                                 <i class="right fas fa-angle-left"></i>
                             </p>
-                        </a>
+                        </router-link>
+
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <a href="../../index.html" class="nav-link">
@@ -132,13 +122,24 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a href="../widgets.html" class="nav-link">
+                        <router-link to="/posts">
+                        <!-- <a href="../widgets.html" class="nav-link"> -->
                             <i class="nav-icon fas fa-th"></i>
                             <p>
-                                Widgets
-                                <span class="right badge badge-danger">New</span>
+                                Posts
                             </p>
-                        </a>
+                        <!-- </a> -->
+                        </router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link to="/home">
+                        <!-- <a href="../widgets.html" class="nav-link"> -->
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                Home
+                            </p>
+                        <!-- </a> -->
+                        </router-link>
                     </li>
                     
                 </ul>
@@ -153,36 +154,11 @@
         <!-- Content Header (Page header) -->
         
         <!-- Main content -->
-        <section class="content">
-
-            <!-- Default box -->
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Title</h3>
-
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
-                            <i class="fas fa-minus"></i></button>
-                        <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
-                            <i class="fas fa-times"></i></button>
-                    </div>
-                </div>
-                <div class="card-body">
-                    Start creating your amazing application!
-                </div>
-                <!-- /.card-body -->
-                <div class="card-footer">
-                    Footer
-                </div>
-                <!-- /.card-footer-->
-            </div>
-            <!-- /.card -->
-
-        </section>
+        <admin-main></admin-main>
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
-    <example-component></example-component>
+    <!-- <example-component></example-component> -->
     <footer class="main-footer">
         <div class="float-right d-none d-sm-block">
             <b>Version</b> 3.0.0

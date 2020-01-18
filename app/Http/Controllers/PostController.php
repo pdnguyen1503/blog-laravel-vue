@@ -6,14 +6,14 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\Category;
 
-
 class PostController extends Controller
 {
-    public function allPost(){
+    public function getAllPost(){
     	$posts  = Post::with('category', 'user')->get();
-    	$categories  = Category::with('posts')->get();
-    	dd($categories);
-    	return $posts;
+    	return response()->json([
+			'message' => 'get all post success',
+			'posts'=>$posts
+		], 200);
     }
 
 }
