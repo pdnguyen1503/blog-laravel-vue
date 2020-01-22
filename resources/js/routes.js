@@ -33,7 +33,7 @@ export const routes = [{
         component: addPost
     },
     {
-        path: '/edit-post/:postid', // truyen id qua component Edit
+        path: '/edit-post/:postId', // truyen id qua component Edit
         component: editPost
     }
 ]

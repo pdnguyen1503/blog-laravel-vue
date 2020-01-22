@@ -1,5 +1,9 @@
 require('./bootstrap');
 window.Vue = require('vue');
+// import support markdown editor
+import 'v-markdown-editor/dist/index.css';
+import Editor from 'v-markdown-editor'
+Vue.use(Editor);
 // suport Vuex
 import Vuex from 'vuex'
 Vue.use(Vuex)

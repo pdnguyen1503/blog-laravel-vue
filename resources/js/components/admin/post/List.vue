@@ -32,10 +32,11 @@
 										<td v-if="post.category">{{ post.category.cat_name }}</td>
 										<td>{{ post.title | sortlength(15, "...") }}</td>
 										<td>{{ post.description | sortlength(20, "...") }}</td>
-										<td><img :src="post.photo" alt="" style="width:40px; height: 40px"></td>
+										<td><img :src="ourImage(post.photo)" alt="" style="width:40px; height: 40px"></td>
 										<td>
-											<a href="" >Edit</a>
-											<a href="" >Delete</a>
+											<a href="" ></a>
+											<router-link :to="`/edit-post/${post.id}`">Edit</router-link>
+											<a href="" @click.prevent="deletePost(post.id)">Delete</a>
 										</td>
 									</tr>
 								</tbody>
@@ -62,7 +63,23 @@ import Axios from "axios"
 			}
 		},
 		methods: {
-			
+			ourImage(img){
+				return "storage/images/" + img;
+			},
+
+			deletePost(id){
+				Axios.get('/delete-post/'+id)
+				.then((response)=>{
+					this.$store.dispatch("getAllPost")
+					Toast.fire({
+						icon: 'success',
+						title: 'delete post successfully'
+					})
+				})
+				.catch(()=>{
+
+				})
+			}
 		}
 		
 	}

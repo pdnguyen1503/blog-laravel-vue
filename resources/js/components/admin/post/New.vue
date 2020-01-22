@@ -8,8 +8,9 @@
 							<div class="card-header">
 								<h3 class="card-title">Add Post</h3>
 							</div>
-							<form role="form" enctype="multipart/form-data">
+							<form role="form" enctype="multipart/form-data" @submit.prevent="addPost()">
 								<div class="card-body">
+									<!-- title -->
 									<div class="form-group">
 										<label for="exampleInputTitle">Post Title</label>
 										<input type="text" class="form-control"
@@ -22,6 +23,7 @@
 										
 										<has-error :form="form" field="title"></has-error>
 									</div>
+									<!-- category id relationship -->
 									<div class="form-group">
 										<label for="exampleInputCategory">Post Category </label>
 										<select class="form-control" 
@@ -35,24 +37,24 @@
 										</select>
 										<has-error :form="form" field="cat_id"></has-error>
 									</div>
+									<!-- description -->
 									<div class="form-group">
 										<label for="exampleInputDescription">Description</label>
-										<textarea type="text" class="form-control"
-											id="exampleInputDescription" 
-											placeholder="Enter Description"
-											v-model="form.description"
-											name="description"
-											:class="{ 'is-invalid': form.errors.has('description') }"
-											></textarea>
+											<markdown-editor 
+												v-model="form.description" 
+												:class="{ 'is-invalid': form.errors.has('description') }"
+											></markdown-editor>
 										
 										<has-error :form="form" field="description"></has-error>
 									</div>
+									<!-- photo -->
 									<div class="form-group">
 										<label for="exampleInputPhoto">Post Photo</label>
 										<input 
 											v-on:change="changePhoto($event)"
 											type="file"
 											name="photo"
+											:v-model="form.photo"
 											:class="{ 'is-invalid': form.errors.has('photo') }"
 											>
 											<img :src="form.photo" alt="" style="width:80px; height:80px">
@@ -97,13 +99,38 @@
 		methods: {
 			changePhoto(event){
 				let file = event.target.files[0];
-				let reader = new FileReader();
-				reader.onload = (event) => {
-					// console.log(event.target)
-					this.form.photo = event.target.result;
-				};
-		
-				reader.readAsDataURL(file);
+				// console.log(file);
+				if(file.size > 1048576){
+					Swal.fire({
+					icon: 'error',
+					title: 'Error size of photo',
+					text: 'Size of photo  limited!',
+					footer: '<a href>Why do I have this issue?</a>'
+					});
+				}else{
+					let reader = new FileReader();
+					reader.onload = (event) => {
+						this.form.photo = event.target.result;
+						// console.log(event.target.result);
+					};
+			
+					reader.readAsDataURL(file);
+				}
+				
+			},
+
+			addPost: function(){
+				this.form.post('/add-post')
+				.then((response)=>{
+					this.$router.push('/posts')
+					Toast.fire({
+						icon: 'success',
+						title: 'Add new post successfully'
+					})
+				})
+				.catch(()=>{
+
+				})
 			}
 		}
     }

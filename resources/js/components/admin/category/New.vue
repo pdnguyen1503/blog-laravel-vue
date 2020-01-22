@@ -8,7 +8,7 @@
 						<div class="card-header">
 							<h3 class="card-title">Add Category</h3>
 						</div>
-						<form role="form" @click.prevent="addCategory()">
+						<form role="form" @submit.prevent="addCategory()">
 							<div class="card-body">
 							<div class="form-group">
 								<label for="exampleInputCategoryName">Category Name</label>
@@ -50,8 +50,8 @@
 				.then((response)=>{
 					this.$router.push('/categories')
 					Toast.fire({
-					icon: 'success',
-					title: 'Add category successfully'
+						icon: 'success',
+						title: 'Add category successfully'
 					})
 				})
 				.catch(()=>{
