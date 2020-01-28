@@ -23,6 +23,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/post/{id}', 'PostController@editPost')->name('editPost');
     Route::post('/update-post/{id}', 'PostController@postEditPost')->name('postEditPost');
 });
+Route::get('blog-posts', 'BlogController@getAllBlogPost')->name('getBlogPost');
 
 
 

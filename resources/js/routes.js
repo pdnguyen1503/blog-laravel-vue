@@ -6,6 +6,11 @@ import editCategory from './components/admin/category/Edit.vue'
 import listPost from './components/admin/post/List.vue'
 import addPost from './components/admin/post/New.vue'
 import editPost from './components/admin/post/Edit.vue'
+/**
+ * import component frontend
+ */
+import PublicHome from './components/public/PublicHome.vue'
+import BlogPost from './components/public/blog/BlogPost.vue'
 
 export const routes = [{
         path: '/home',
@@ -35,5 +40,17 @@ export const routes = [{
     {
         path: '/edit-post/:postId', // truyen id qua component Edit
         component: editPost
+    },
+
+    /**
+     * Front end Router
+     */
+    {
+        path: '/',
+        component: PublicHome
+    },
+    {
+        path: '/blog',
+        component: BlogPost
     }
 ]

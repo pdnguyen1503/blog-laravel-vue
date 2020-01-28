@@ -3,7 +3,8 @@ import Axios from "axios"
 export default {
     state: {
         category: [],
-        post: []
+        post: [],
+        blogpost: []
     },
     getters: {
         getCategory(state) {
@@ -11,6 +12,9 @@ export default {
         },
         getAllPost(state) {
             return state.post
+        },
+        getBlogPost(state) {
+            return state.blogpost
         }
     },
     actions: {
@@ -25,6 +29,12 @@ export default {
                 .then((response) => {
                     context.commit('allpost', response.data.posts);
                 })
+        },
+        getBlogPost(context) {
+            Axios.get('/blog-posts')
+                .then((response) => {
+                    context.commit('getallblogpost', response.data.blogPosts);
+                })
         }
     },
     mutations: {
@@ -33,6 +43,9 @@ export default {
         },
         allpost(state, data) {
             return state.post = data
+        },
+        getallblogpost(state, data) {
+            return state.blogpost = data
         }
     }
 }

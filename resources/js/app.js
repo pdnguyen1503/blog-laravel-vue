@@ -21,6 +21,9 @@ import { routes } from './routes.js';
 
 //use component master
 Vue.component('admin-main', require('./components/admin/AdminMaster.vue').default);
+Vue.component('home-main', require('./components/public/PublicMaster.vue').default);
+
+
 //v-form
 import Vue from 'vue'
 import { Form, HasError, AlertError } from 'vform'
